@@ -16,8 +16,6 @@
 		"db:studio": "turbo -F @relicord/db db:studio",
 		"db:generate": "turbo -F @relicord/db db:generate",
 		"db:migrate": "turbo -F @relicord/db db:migrate",
-		"deploy": "turbo -F @relicord/infra deploy",
-		"destroy": "turbo -F @relicord/infra destroy",
 		"check": "biome check --write .",
 		"prepare": "husky"
 	},

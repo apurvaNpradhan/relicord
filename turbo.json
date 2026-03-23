@@ -1,11 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"ui": "tui",
-	"pipeline": {
-		"build": {
-			"env": ["VITE_SERVER_URL", "VITE_BASE_URL", "VITE_R2_URL"]
-		}
-	},
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
@@ -35,12 +30,6 @@
 		"db:studio": {
 			"cache": false,
 			"persistent": true
-		},
-		"deploy": {
-			"cache": false
-		},
-		"destroy": {
-			"cache": false
 		}
 	}
 }
