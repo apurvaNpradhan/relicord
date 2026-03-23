@@ -26,8 +26,6 @@ const statusVariants = cva(
 	},
 );
 
-type DivProps = React.ComponentPropsWithoutRef<"div">;
-
 function Status({
 	className,
 	variant = "default",
