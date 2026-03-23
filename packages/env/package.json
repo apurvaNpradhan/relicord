@@ -14,7 +14,6 @@
 	},
 	"devDependencies": {
 		"@relicord/config": "workspace:*",
-		"@relicord/infra": "workspace:*",
 		"@types/node": "catalog:",
 		"typescript": "catalog:"
 	}
