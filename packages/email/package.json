@@ -9,10 +9,10 @@
 		"start": "NODE_ENV=production bun src/index.ts"
 	},
 	"exports": {
-		"./verifyEmail": "./emails/verify-email.tsx",
-		"./resetPassword": "./emails/reset-password.tsx",
-		"./changeEmail": "./emails/change-email.tsx",
-		"./deleteAccount": "./emails/delete-account.tsx"
+		"./verifyEmail": "./src/verify-email.tsx",
+		"./resetPassword": "./src/reset-password.tsx",
+		"./changeEmail": "./src/change-email.tsx",
+		"./deleteAccount": "./src/delete-account.tsx"
 	},
 	"devDependencies": {
 		"@relicord/config": "workspace:*",

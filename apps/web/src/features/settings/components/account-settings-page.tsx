@@ -216,7 +216,6 @@ export function AccountSettingsPage() {
 
 		setIsUploadingAvatar(true);
 		try {
-			// Convert to base64 for the TRPC call
 			const base64 = await new Promise<string>((resolve) => {
 				const reader = new FileReader();
 				reader.onload = () => resolve(reader.result as string);

@@ -16,7 +16,9 @@
 		"@relicord/env": "workspace:*",
 		"better-auth": "catalog:",
 		"dotenv": "catalog:",
+
 		"resend": "^6.9.4",
+
 		"zod": "catalog:"
 	},
 	"devDependencies": {
