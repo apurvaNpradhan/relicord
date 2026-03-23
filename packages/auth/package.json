@@ -1,0 +1,26 @@
+{
+	"name": "@relicord/auth",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@relicord/db": "workspace:*",
+		"@relicord/email": "workspace:*",
+		"@relicord/env": "workspace:*",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"resend": "^6.9.4",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@relicord/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}

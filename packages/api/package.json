@@ -1,0 +1,30 @@
+{
+	"name": "@relicord/api",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.1014.0",
+		"@aws-sdk/s3-request-presigner": "^3.1014.0",
+		"@relicord/auth": "workspace:*",
+		"@relicord/db": "workspace:*",
+		"@relicord/env": "workspace:*",
+		"@trpc/client": "catalog:",
+		"@trpc/server": "catalog:",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"sharp": "^0.34.5",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@relicord/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}

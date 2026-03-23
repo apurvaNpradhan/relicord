@@ -1,0 +1,28 @@
+{
+	"name": "@relicord/email",
+	"version": "1.0.0",
+	"private": true,
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
+		"start": "NODE_ENV=production bun src/index.ts"
+	},
+	"exports": {
+		"./verifyEmail": "./emails/verify-email.tsx",
+		"./resetPassword": "./emails/reset-password.tsx",
+		"./changeEmail": "./emails/change-email.tsx",
+		"./deleteAccount": "./emails/delete-account.tsx"
+	},
+	"devDependencies": {
+		"@relicord/config": "workspace:*",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"@react-email/components": "1.0.7",
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	}
+}
