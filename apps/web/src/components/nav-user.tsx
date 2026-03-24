@@ -49,14 +49,9 @@ export function NavUser({ user }: { user: User }) {
 					</SidebarMenuButton>
 				}
 			/>
-			<DropdownMenuContent
-				className="w-56 rounded-lg"
-				align="end"
-				alignOffset={-10}
-				sideOffset={4}
-			>
+			<DropdownMenuContent className="w-56 rounded-lg" align="end">
 				<DropdownMenuItem className="gap-2 p-2 font-medium">
-					<div className="flex size-6 items-center justify-center overflow-hidden rounded-sm border">
+					<div>
 						<Avatar className="h-6 w-6 rounded-sm">
 							<AvatarImage
 								src={getImageUrl(user.image ?? "")}
@@ -71,10 +66,10 @@ export function NavUser({ user }: { user: User }) {
 						</Avatar>
 					</div>
 					<div className="flex flex-col gap-0.5">
-						<span className="font-semibold text-sm leading-none">
+						<span className="line-clamp-1 font-semibold text-sm">
 							{user.name}
 						</span>
-						<span className="text-muted-foreground text-xs leading-none">
+						<span className="line-clamp-1 text-muted-foreground text-xs">
 							{user.email}
 						</span>
 					</div>

@@ -1,5 +1,6 @@
 import { SidebarProvider } from "@relicord/ui/components/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { HeaderProvider } from "@/components/layout/header-context";
 import { sessionQueryOptions } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/(authenticated)")({
@@ -36,10 +37,8 @@ export const Route = createFileRoute("/(authenticated)")({
 
 function RouteComponent() {
 	return (
-		<>
-			<SidebarProvider className="min-h-svh">
-				<Outlet />
-			</SidebarProvider>
-		</>
+		<HeaderProvider>
+			<Outlet />
+		</HeaderProvider>
 	);
 }

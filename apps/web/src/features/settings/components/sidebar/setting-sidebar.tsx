@@ -35,8 +35,8 @@ export function SettingSidebar({
 	};
 
 	return (
-		<Sidebar collapsible="offcanvas" variant="inset" {...props}>
-			<SidebarHeader className="px-0">
+		<Sidebar {...props} collapsible="icon" variant="inset">
+			<SidebarHeader>
 				<SidebarMenuButton
 					onClick={() => {
 						onBack();
@@ -47,7 +47,7 @@ export function SettingSidebar({
 				</SidebarMenuButton>
 			</SidebarHeader>
 			<SidebarContent>
-				<SidebarGroup className="p-0">
+				<SidebarGroup>
 					<SidebarGroupLabel className="font-medium text-muted-foreground/80">
 						Account
 					</SidebarGroupLabel>

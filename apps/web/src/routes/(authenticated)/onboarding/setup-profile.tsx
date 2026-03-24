@@ -113,8 +113,8 @@ function RouteComponent() {
 	};
 
 	return (
-		<div className="flex min-h-svh items-center justify-center p-4">
-			<Card className="w-full max-w-md border-none bg-transparent shadow-none sm:border sm:bg-card sm:shadow-sm">
+		<div className="flex h-dvh w-full items-center justify-center p-4">
+			<Card className="w-full max-w-lg border-none bg-transparent shadow-none sm:border sm:bg-card sm:shadow-sm">
 				<CardHeader className="text-center">
 					<CardTitle className="font-bold text-2xl tracking-tight">
 						Complete your profile

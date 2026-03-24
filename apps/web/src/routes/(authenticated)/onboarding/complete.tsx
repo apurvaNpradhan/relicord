@@ -60,8 +60,8 @@ function RouteComponent() {
 	}, [profileCompleted, name, slug, navigate]);
 
 	return (
-		<div className="flex h-svh w-full items-center justify-center">
-			<Card className="w-full max-w-md border-none bg-transparent shadow-none sm:border sm:bg-card sm:shadow-sm">
+		<div className="flex h-dvh w-full items-center justify-center p-4">
+			<Card className="w-full max-w-lg border-none bg-transparent shadow-none sm:border sm:bg-card sm:shadow-sm">
 				<CardContent className="pt-6">
 					<div className="mb-6 text-center">
 						<h2 className="font-bold text-2xl">You're all set!</h2>

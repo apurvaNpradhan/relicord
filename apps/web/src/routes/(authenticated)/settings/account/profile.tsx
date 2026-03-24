@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import SettingLayout from "@/components/layout/setting-layout";
 import { AccountSettingsPage } from "@/features/settings/components/account-settings-page";
 export const Route = createFileRoute(
-	"/(authenticated)/(app)/settings/account/profile",
+	"/(authenticated)/settings/account/profile",
 )({
 	component: RouteComponent,
 	head: () => ({

@@ -3,7 +3,7 @@ import SettingLayout from "@/components/layout/setting-layout";
 import { PreferencesForm } from "@/features/settings/components/preferences-form";
 
 export const Route = createFileRoute(
-	"/(authenticated)/(app)/settings/account/preferences",
+	"/(authenticated)/settings/account/preferences",
 )({
 	component: RouteComponent,
 	head: () => ({

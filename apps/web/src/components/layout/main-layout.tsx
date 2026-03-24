@@ -1,12 +1,7 @@
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "@relicord/ui/components/sidebar";
-import { useIsMobile } from "@relicord/ui/hooks/use-mobile";
+import { SidebarInset, SidebarProvider } from "@relicord/ui/components/sidebar";
 import { cn } from "@relicord/ui/lib/utils";
 import React from "react";
-import { SettingSidebar } from "@/features/settings/components/sidebar/setting-sidebar";
+import { AppSidebar } from "./app-sidebar";
 import { HeaderOutlet } from "./header-context";
 
 interface MainLayoutProps {
@@ -31,7 +26,7 @@ const isEmptyHeader = (header: React.ReactNode | undefined): boolean => {
 	return false;
 };
 
-export default function SettingLayout({
+export default function MainLayout({
 	children,
 	header,
 	headersNumber = 2,
@@ -40,29 +35,27 @@ export default function SettingLayout({
 		1: "h-[calc(100svh-40px)] lg:h-[calc(100svh-56px)]",
 		2: "h-[calc(100svh-80px)] lg:h-[calc(100svh-96px)]",
 	};
-	const isMobile = useIsMobile();
 
 	const effectiveHeader = header || <HeaderOutlet />;
 
 	return (
 		<SidebarProvider>
-			<div className="flex h-full w-full flex-col justify-start overflow-hidden">
-				{isMobile && <SidebarTrigger />}
-				{effectiveHeader}
-				<div
-					className={cn(
-						"flex w-full overflow-auto",
-						isEmptyHeader(effectiveHeader)
-							? "h-full"
-							: height[headersNumber as keyof typeof height],
-					)}
-				>
-					<SettingSidebar />
-					<SidebarInset className="h-dvh w-full lg:p-3">
-						<div>{children}</div>
-					</SidebarInset>
+			<AppSidebar />
+			<SidebarInset className="h-dvh w-full lg:p-3">
+				<div>
+					{effectiveHeader}
+					<div
+						className={cn(
+							"w-full overflow-auto p-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+							isEmptyHeader(effectiveHeader)
+								? "h-full"
+								: height[headersNumber as keyof typeof height],
+						)}
+					>
+						{children}
+					</div>
 				</div>
-			</div>
+			</SidebarInset>
 		</SidebarProvider>
 	);
 }

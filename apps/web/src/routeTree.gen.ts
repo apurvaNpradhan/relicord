@@ -16,12 +16,14 @@ import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as signSignUpRouteImport } from './routes/(sign)/sign-up'
 import { Route as signSignInRouteImport } from './routes/(sign)/sign-in'
 import { Route as publicGoodbyeRouteImport } from './routes/(public)/goodbye'
+import { Route as authenticatedappRouteRouteImport } from './routes/(authenticated)/(app)/route'
 import { Route as authenticatedOnboardingIndexRouteImport } from './routes/(authenticated)/onboarding/index'
 import { Route as authenticatedOnboardingSetupProfileRouteImport } from './routes/(authenticated)/onboarding/setup-profile'
 import { Route as authenticatedOnboardingCompleteRouteImport } from './routes/(authenticated)/onboarding/complete'
 import { Route as authenticatedappHomeRouteImport } from './routes/(authenticated)/(app)/home'
-import { Route as authenticatedappSettingsAccountProfileRouteImport } from './routes/(authenticated)/(app)/settings/account/profile'
-import { Route as authenticatedappSettingsAccountPreferencesRouteImport } from './routes/(authenticated)/(app)/settings/account/preferences'
+import { Route as authenticatedappBondsRouteImport } from './routes/(authenticated)/(app)/bonds'
+import { Route as authenticatedSettingsAccountProfileRouteImport } from './routes/(authenticated)/settings/account/profile'
+import { Route as authenticatedSettingsAccountPreferencesRouteImport } from './routes/(authenticated)/settings/account/preferences'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -56,6 +58,10 @@ const publicGoodbyeRoute = publicGoodbyeRouteImport.update({
   path: '/goodbye',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authenticatedappRouteRoute = authenticatedappRouteRouteImport.update({
+  id: '/(app)',
+  getParentRoute: () => authenticatedRouteRoute,
+} as any)
 const authenticatedOnboardingIndexRoute =
   authenticatedOnboardingIndexRouteImport.update({
     id: '/onboarding/',
@@ -75,19 +81,24 @@ const authenticatedOnboardingCompleteRoute =
     getParentRoute: () => authenticatedRouteRoute,
   } as any)
 const authenticatedappHomeRoute = authenticatedappHomeRouteImport.update({
-  id: '/(app)/home',
+  id: '/home',
   path: '/home',
-  getParentRoute: () => authenticatedRouteRoute,
+  getParentRoute: () => authenticatedappRouteRoute,
 } as any)
-const authenticatedappSettingsAccountProfileRoute =
-  authenticatedappSettingsAccountProfileRouteImport.update({
-    id: '/(app)/settings/account/profile',
+const authenticatedappBondsRoute = authenticatedappBondsRouteImport.update({
+  id: '/bonds',
+  path: '/bonds',
+  getParentRoute: () => authenticatedappRouteRoute,
+} as any)
+const authenticatedSettingsAccountProfileRoute =
+  authenticatedSettingsAccountProfileRouteImport.update({
+    id: '/settings/account/profile',
     path: '/settings/account/profile',
     getParentRoute: () => authenticatedRouteRoute,
   } as any)
-const authenticatedappSettingsAccountPreferencesRoute =
-  authenticatedappSettingsAccountPreferencesRouteImport.update({
-    id: '/(app)/settings/account/preferences',
+const authenticatedSettingsAccountPreferencesRoute =
+  authenticatedSettingsAccountPreferencesRouteImport.update({
+    id: '/settings/account/preferences',
     path: '/settings/account/preferences',
     getParentRoute: () => authenticatedRouteRoute,
   } as any)
@@ -98,12 +109,13 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof signSignInRoute
   '/sign-up': typeof signSignUpRoute
   '/': typeof publicIndexRoute
+  '/bonds': typeof authenticatedappBondsRoute
   '/home': typeof authenticatedappHomeRoute
   '/onboarding/complete': typeof authenticatedOnboardingCompleteRoute
   '/onboarding/setup-profile': typeof authenticatedOnboardingSetupProfileRoute
   '/onboarding/': typeof authenticatedOnboardingIndexRoute
-  '/settings/account/preferences': typeof authenticatedappSettingsAccountPreferencesRoute
-  '/settings/account/profile': typeof authenticatedappSettingsAccountProfileRoute
+  '/settings/account/preferences': typeof authenticatedSettingsAccountPreferencesRoute
+  '/settings/account/profile': typeof authenticatedSettingsAccountProfileRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -111,28 +123,31 @@ export interface FileRoutesByTo {
   '/sign-in': typeof signSignInRoute
   '/sign-up': typeof signSignUpRoute
   '/': typeof publicIndexRoute
+  '/bonds': typeof authenticatedappBondsRoute
   '/home': typeof authenticatedappHomeRoute
   '/onboarding/complete': typeof authenticatedOnboardingCompleteRoute
   '/onboarding/setup-profile': typeof authenticatedOnboardingSetupProfileRoute
   '/onboarding': typeof authenticatedOnboardingIndexRoute
-  '/settings/account/preferences': typeof authenticatedappSettingsAccountPreferencesRoute
-  '/settings/account/profile': typeof authenticatedappSettingsAccountProfileRoute
+  '/settings/account/preferences': typeof authenticatedSettingsAccountPreferencesRoute
+  '/settings/account/profile': typeof authenticatedSettingsAccountProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
   '/(sign)': typeof signRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/(authenticated)/(app)': typeof authenticatedappRouteRouteWithChildren
   '/(public)/goodbye': typeof publicGoodbyeRoute
   '/(sign)/sign-in': typeof signSignInRoute
   '/(sign)/sign-up': typeof signSignUpRoute
   '/(public)/': typeof publicIndexRoute
+  '/(authenticated)/(app)/bonds': typeof authenticatedappBondsRoute
   '/(authenticated)/(app)/home': typeof authenticatedappHomeRoute
   '/(authenticated)/onboarding/complete': typeof authenticatedOnboardingCompleteRoute
   '/(authenticated)/onboarding/setup-profile': typeof authenticatedOnboardingSetupProfileRoute
   '/(authenticated)/onboarding/': typeof authenticatedOnboardingIndexRoute
-  '/(authenticated)/(app)/settings/account/preferences': typeof authenticatedappSettingsAccountPreferencesRoute
-  '/(authenticated)/(app)/settings/account/profile': typeof authenticatedappSettingsAccountProfileRoute
+  '/(authenticated)/settings/account/preferences': typeof authenticatedSettingsAccountPreferencesRoute
+  '/(authenticated)/settings/account/profile': typeof authenticatedSettingsAccountProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,6 +157,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/'
+    | '/bonds'
     | '/home'
     | '/onboarding/complete'
     | '/onboarding/setup-profile'
@@ -155,6 +171,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/'
+    | '/bonds'
     | '/home'
     | '/onboarding/complete'
     | '/onboarding/setup-profile'
@@ -166,16 +183,18 @@ export interface FileRouteTypes {
     | '/(authenticated)'
     | '/(sign)'
     | '/login'
+    | '/(authenticated)/(app)'
     | '/(public)/goodbye'
     | '/(sign)/sign-in'
     | '/(sign)/sign-up'
     | '/(public)/'
+    | '/(authenticated)/(app)/bonds'
     | '/(authenticated)/(app)/home'
     | '/(authenticated)/onboarding/complete'
     | '/(authenticated)/onboarding/setup-profile'
     | '/(authenticated)/onboarding/'
-    | '/(authenticated)/(app)/settings/account/preferences'
-    | '/(authenticated)/(app)/settings/account/profile'
+    | '/(authenticated)/settings/account/preferences'
+    | '/(authenticated)/settings/account/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -237,6 +256,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicGoodbyeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(authenticated)/(app)': {
+      id: '/(authenticated)/(app)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authenticatedappRouteRouteImport
+      parentRoute: typeof authenticatedRouteRoute
+    }
     '/(authenticated)/onboarding/': {
       id: '/(authenticated)/onboarding/'
       path: '/onboarding'
@@ -263,44 +289,66 @@ declare module '@tanstack/react-router' {
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof authenticatedappHomeRouteImport
-      parentRoute: typeof authenticatedRouteRoute
+      parentRoute: typeof authenticatedappRouteRoute
     }
-    '/(authenticated)/(app)/settings/account/profile': {
-      id: '/(authenticated)/(app)/settings/account/profile'
+    '/(authenticated)/(app)/bonds': {
+      id: '/(authenticated)/(app)/bonds'
+      path: '/bonds'
+      fullPath: '/bonds'
+      preLoaderRoute: typeof authenticatedappBondsRouteImport
+      parentRoute: typeof authenticatedappRouteRoute
+    }
+    '/(authenticated)/settings/account/profile': {
+      id: '/(authenticated)/settings/account/profile'
       path: '/settings/account/profile'
       fullPath: '/settings/account/profile'
-      preLoaderRoute: typeof authenticatedappSettingsAccountProfileRouteImport
+      preLoaderRoute: typeof authenticatedSettingsAccountProfileRouteImport
       parentRoute: typeof authenticatedRouteRoute
     }
-    '/(authenticated)/(app)/settings/account/preferences': {
-      id: '/(authenticated)/(app)/settings/account/preferences'
+    '/(authenticated)/settings/account/preferences': {
+      id: '/(authenticated)/settings/account/preferences'
       path: '/settings/account/preferences'
       fullPath: '/settings/account/preferences'
-      preLoaderRoute: typeof authenticatedappSettingsAccountPreferencesRouteImport
+      preLoaderRoute: typeof authenticatedSettingsAccountPreferencesRouteImport
       parentRoute: typeof authenticatedRouteRoute
     }
   }
 }
 
-interface authenticatedRouteRouteChildren {
+interface authenticatedappRouteRouteChildren {
+  authenticatedappBondsRoute: typeof authenticatedappBondsRoute
   authenticatedappHomeRoute: typeof authenticatedappHomeRoute
+}
+
+const authenticatedappRouteRouteChildren: authenticatedappRouteRouteChildren = {
+  authenticatedappBondsRoute: authenticatedappBondsRoute,
+  authenticatedappHomeRoute: authenticatedappHomeRoute,
+}
+
+const authenticatedappRouteRouteWithChildren =
+  authenticatedappRouteRoute._addFileChildren(
+    authenticatedappRouteRouteChildren,
+  )
+
+interface authenticatedRouteRouteChildren {
+  authenticatedappRouteRoute: typeof authenticatedappRouteRouteWithChildren
   authenticatedOnboardingCompleteRoute: typeof authenticatedOnboardingCompleteRoute
   authenticatedOnboardingSetupProfileRoute: typeof authenticatedOnboardingSetupProfileRoute
   authenticatedOnboardingIndexRoute: typeof authenticatedOnboardingIndexRoute
-  authenticatedappSettingsAccountPreferencesRoute: typeof authenticatedappSettingsAccountPreferencesRoute
-  authenticatedappSettingsAccountProfileRoute: typeof authenticatedappSettingsAccountProfileRoute
+  authenticatedSettingsAccountPreferencesRoute: typeof authenticatedSettingsAccountPreferencesRoute
+  authenticatedSettingsAccountProfileRoute: typeof authenticatedSettingsAccountProfileRoute
 }
 
 const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
-  authenticatedappHomeRoute: authenticatedappHomeRoute,
+  authenticatedappRouteRoute: authenticatedappRouteRouteWithChildren,
   authenticatedOnboardingCompleteRoute: authenticatedOnboardingCompleteRoute,
   authenticatedOnboardingSetupProfileRoute:
     authenticatedOnboardingSetupProfileRoute,
   authenticatedOnboardingIndexRoute: authenticatedOnboardingIndexRoute,
-  authenticatedappSettingsAccountPreferencesRoute:
-    authenticatedappSettingsAccountPreferencesRoute,
-  authenticatedappSettingsAccountProfileRoute:
-    authenticatedappSettingsAccountProfileRoute,
+  authenticatedSettingsAccountPreferencesRoute:
+    authenticatedSettingsAccountPreferencesRoute,
+  authenticatedSettingsAccountProfileRoute:
+    authenticatedSettingsAccountProfileRoute,
 }
 
 const authenticatedRouteRouteWithChildren =
